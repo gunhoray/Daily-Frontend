@@ -1,9 +1,20 @@
 import React from 'react'
+import NavigationBar from './components/navigationBar'
+import Footer from './components/footer'
+import PlanYourDay from './components/planYourDay'
+import ShowTodoList from './components/showTodoList'
+import ShowYourProfile from './components/showYourProfile'
 
-const mainPage = () => {
+const MainPage = () => {
   return (
-    <div>mainPage</div>
+    <>
+    <NavigationBar />
+    <PlanYourDay />
+    <ShowTodoList />
+    <ShowYourProfile />
+    <Footer />
+    </>
   )
 }
 
-export default mainPage
+export default MainPage

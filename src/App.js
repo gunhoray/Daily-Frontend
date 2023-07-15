@@ -1,19 +1,20 @@
 import { QueryClient, QueryClientProvider } from "react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import HomePage from "./1. homepage/homePage";
+import MainPage from "./1. mainpage/mainPage";
+import SignupPage from "./1. signuppage/signupPage";
 
 const queryClient = new QueryClient()
 
 function App() {
 
-
-
   return (
     <QueryClientProvider client={queryClient} >
     <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/main' element={<Main/>} />
-          <Route path='/signup' element={<SignUp/>} />
+          <Route path='/' element={<HomePage/>} />
+          <Route path='/main' element={<MainPage/>} />
+          <Route path='/signup' element={<SignupPage/>} />
         </Routes>
     </BrowserRouter>
     </QueryClientProvider>
