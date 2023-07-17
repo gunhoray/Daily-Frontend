@@ -96,7 +96,6 @@ const ShowTodoList = () => {
                    {todopost.content}
              </NotcompleteTodo>)
                 })}
-                
            {deatilTodo && <TodoDetail setDetailTodo={setDetailTodo}/>}
 
       <NotcompleteTodo onClick={()=>{setDetailTodo(true);}}>
@@ -126,7 +125,6 @@ const ShowTodoList = () => {
             </CompletedTodo>
       </CompleteTodolistContainer>
     </ShowtodolistSection>
-
   )
 }
 
