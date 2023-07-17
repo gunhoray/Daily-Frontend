@@ -98,12 +98,12 @@ const HomePage = () => {
      
         <h1>Daily</h1>
         <span>The best plan makes the best day</span>
-      <HomepageEmailInput placeholder='Enter your E-mail'/>
-      <HomepagePasswordInput placeholder='Enter your Passwords'/>
+        <HomepageEmailInput placeholder='Enter your E-mail'/>
+        <HomepagePasswordInput placeholder='Enter your Passwords'/>
 
-      <ButtonContainer>
-          <SignupBtn onClick={onSignupHandler}>Signup</SignupBtn>
-          <LoginBtn onClick={onLoginHandler}>Login</LoginBtn>
+        <ButtonContainer>
+            <SignupBtn onClick={onSignupHandler}>Signup</SignupBtn>
+            <LoginBtn onClick={onLoginHandler}>Login</LoginBtn>
         </ButtonContainer>
 
       </HomepageContainer>
