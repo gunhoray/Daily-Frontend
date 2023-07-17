@@ -3,7 +3,7 @@ import NavigationBar from "./components/navigationBar";
 import Footer from "./components/footer/footer";
 import PlanYourDay from "./components/planYourDay";
 import ShowTodoList from "./components/showTodoList";
-import ShowYourProfile from "./components/showYourProfile";
+import ShowYourProfile from "./components/showYourProfile/showYourProfile";
 
 const MainPage = () => {
   return (

@@ -2,7 +2,7 @@ import { styled } from "styled-components";
 
 export const FooterSection = styled.div`
   width: 100%;
-  height: 100%;
+  height: 60px;
   padding: 60;
   background: white;
   justify-content: center;
@@ -19,11 +19,11 @@ export const FooterContainer = styled.div`
   position: relative;
 `;
 export const FooterAboutUs = styled.div`
-  width: 100px;
+  width: 120px;
   align-self: stretch;
   text-align: center;
   color: black;
-  font-size: 20px;
+  font-size: 18px;
   font-family: Roboto;
   font-weight: 700;
   line-height: 28;
@@ -35,11 +35,11 @@ export const FooterAboutUs = styled.div`
   }
 `;
 export const FooterCopyRight = styled.div`
-  width: 100px;
+  width: 120px;
   align-self: stretch;
   text-align: center;
   color: black;
-  font-size: 20px;
+  font-size: 18px;
   font-family: Roboto;
   font-weight: 700;
   line-height: 28;

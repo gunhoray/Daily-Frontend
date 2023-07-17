@@ -9,7 +9,6 @@ import AboutModal from "./AboutModal";
 
 const Footer = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
-
   const openModal = () => {
     setIsOpenModal(true);
   };
