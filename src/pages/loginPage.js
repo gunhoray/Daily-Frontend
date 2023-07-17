@@ -82,7 +82,7 @@ const ButtonContainer = styled.div`
   gap: 12px;
 `;
 
-const HomePage = () => {
+const LoginPage = () => {
 
   const navigate = useNavigate();
   const onLoginHandler = () => {
@@ -111,4 +111,4 @@ const HomePage = () => {
   )
 }
 
-export default HomePage;
+export default LoginPage;

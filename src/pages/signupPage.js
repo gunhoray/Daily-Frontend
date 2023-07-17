@@ -7,7 +7,7 @@ import {
   ButtonContainer,
   SigninBtn,
   XCircleIcon,
-} from "./signupPageEl";
+} from "./signupPage.styled";
 import { useNavigate } from "react-router-dom";
 
 const SignupPage = () => {
