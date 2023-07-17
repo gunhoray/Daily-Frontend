@@ -20,7 +20,7 @@ const Footer = () => {
       <FooterContainer>
         <FooterAboutUs onClick={openModal}>About Us</FooterAboutUs>
         {isOpenModal && <AboutModal closeModal={closeModal} />}
-        <FooterCopyRight>Copy Right</FooterCopyRight>
+        <FooterCopyRight>CopyRight</FooterCopyRight>
       </FooterContainer>
     </FooterSection>
   );
