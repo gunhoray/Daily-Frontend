@@ -9,6 +9,7 @@ const HomepageSection = styled.div`
   height: 100vh;
   background: #000;
 `
+
 const HomepageContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,6 +26,7 @@ margin-top: -30px;
 color: white;
 }
 `
+
 const HomepageEmailInput = styled.input`
   height: 20px;
   overflow: hidden;
@@ -37,6 +39,7 @@ const HomepageEmailInput = styled.input`
   line-height: 20px;
   width: 400px;
 `
+
 const HomepagePasswordInput = styled.input`
   height: 20px;
   overflow: hidden;
@@ -49,6 +52,7 @@ const HomepagePasswordInput = styled.input`
   line-height: 20px;
   width: 400px;
 `
+
 const SignupBtn = styled.button`
 width: 160px;
 padding: 12px;
@@ -61,6 +65,7 @@ color: #FFF;
  color: black;
 }
 `
+
 const LoginBtn = styled.button`
 width: 160px;
 padding: 12px;
@@ -71,6 +76,7 @@ border: 1px solid #FFF;
  color: white;
 }
 `;
+
 const ButtonContainer = styled.div`
   display: flex;
   gap: 12px;
@@ -92,12 +98,12 @@ const HomePage = () => {
      
         <h1>Daily</h1>
         <span>The best plan makes the best day</span>
-      <HomepageEmailInput placeholder='Enter your E-mail'/>
-      <HomepagePasswordInput placeholder='Enter your Passwords'/>
+        <HomepageEmailInput placeholder='Enter your E-mail'/>
+        <HomepagePasswordInput placeholder='Enter your Passwords'/>
 
-      <ButtonContainer>
-          <SignupBtn onClick={onSignupHandler}>Signup</SignupBtn>
-          <LoginBtn onClick={onLoginHandler}>Login</LoginBtn>
+        <ButtonContainer>
+            <SignupBtn onClick={onSignupHandler}>Signup</SignupBtn>
+            <LoginBtn onClick={onLoginHandler}>Login</LoginBtn>
         </ButtonContainer>
 
       </HomepageContainer>
