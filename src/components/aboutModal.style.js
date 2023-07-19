@@ -25,6 +25,7 @@ export const ModalDataInner = styled.div`
   width: 400px;
   height: 120px;
   border: 1px solid #fff;
+  box-shadow: 5px 5px 5px rgba(255, 255, 255, 0.3);
   border-radius: 10px;
   display: flex;
 `;

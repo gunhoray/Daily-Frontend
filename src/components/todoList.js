@@ -41,8 +41,10 @@ const NotcompleteTodo = styled.button`
   padding: 10px;
   justify-content: center;
   border-radius: 6px;
-  border: 1px solid;
+  border: 1px solid #000;
   background-color: #fff;
+  box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.3);
+  outline: none;
 `;
 const CompleteTodolistContainer = styled.div`
   display: flex;
@@ -66,28 +68,36 @@ const CompletedTodo = styled.div`
   padding: 10px;
   justify-content: center;
   border-radius: 6px;
-  border: 1px solid;
+  border: 1px solid #fff;
   color: #fff;
   background-color: black;
+  box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.3);
+  outline: none;
 `;
 const TodoTitle = styled.div`
   font-size: 20px;
-  display: flex;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  text-align: left;
 `;
 const TodoDeadline = styled.div`
   font-size: 15px;
   display: flex;
 `;
 const TodoList = () => {
-  const [detailTodo, setDetailTodo] = useState(false);
-  const [selectedTodoId, setSelectedTodoId] = useState("");
-
+  const [detailTodo, setDetailTodo] = useState(false); //모달 여닫기
+  const [selectedTodoId, setSelectedTodoId] = useState(""); //데이터 props 해 줄 스테이트
+  //incom투두 데이터
   const {
     isLoading: isTodoLoading,
     isError: isTodoError,
     data: todo,
   } = useQuery("todo", getTodo);
 
+  //com투두 데이터
   const {
     isLoading: isComTodoLoading,
     isError: isComTodoError,
@@ -105,6 +115,7 @@ const TodoList = () => {
     <ShowtodolistSection id="showTodoList">
       <NotcompleteTodolistContainer>
         {todo.todo
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .filter((todopost) => todopost.isDone === false)
           .map(function (todopost) {
             return (
@@ -137,6 +148,7 @@ const TodoList = () => {
 
       <CompleteTodolistContainer>
         {comTodo.todo
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .filter((todopost) => todopost.isDone === true)
           .map(function (todopost) {
             return (

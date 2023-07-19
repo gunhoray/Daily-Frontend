@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styled from "styled-components";
 import { BiXCircle } from "react-icons/bi";
 import { deleteTodo, editTodo, toggleTodo, completeUndoTodo } from "../api/api";
@@ -99,37 +99,42 @@ const UpdateButton = styled.button`
 const TodoDetail = ({ setDetailTodo, selectedTodoId }) => {
   const [updateTitle, setUpdateTitle] = useState(selectedTodoId.title);
   const [updateContent, setUpdateContent] = useState(selectedTodoId.content);
-
+  const todoDeatailTitle = useRef();
   const queryClient = useQueryClient();
 
+  //모달오픈시 포커스
+  useEffect(() => todoDeatailTitle.current.focus(), []);
+  //삭제뮤테이션
   const deleteTodoMutation = useMutation(deleteTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries("todo");
     },
   });
+  //완료취소뮤테이션
   const completeDeleteTodoMutation = useMutation(deleteTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries("comTodo");
     },
   });
-
+  //글수정뮤테이션
   const editTodoMutation = useMutation(editTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries("todo");
     },
   });
+  //완료목록글수정뮤테이션
   const comEditTodoMutation = useMutation(editTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries("comTodo");
     },
   });
-
+  //토글값변경뮤테이션
   const toggleTodoMutation = useMutation(toggleTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries("comTodo");
     },
   });
-
+  //완료취소토글뮤테이션
   const undoToggleTodoMutation = useMutation(completeUndoTodo, {
     onSuccess: () => {
       queryClient.invalidateQueries("todo");
@@ -142,6 +147,7 @@ const TodoDetail = ({ setDetailTodo, selectedTodoId }) => {
     }
     return setDetailTodo(false);
   };
+
   const completeDeleteHandler = (id) => {
     if (window.confirm("정말 해당 일을 삭제하시겠습니까?") === true) {
       deleteTodoMutation.mutate(id);
@@ -175,7 +181,6 @@ const TodoDetail = ({ setDetailTodo, selectedTodoId }) => {
 
   const toggleHandler = () => {
     const toggleTodo = (selectedTodoId.isDone = true);
-
     toggleTodoMutation.mutate({
       id: selectedTodoId.postId,
       isDone: toggleTodo,
@@ -185,12 +190,10 @@ const TodoDetail = ({ setDetailTodo, selectedTodoId }) => {
 
   const undoToggleHandler = () => {
     const toggleTodo = (selectedTodoId.isDone = false);
-
     undoToggleTodoMutation.mutate({
       id: selectedTodoId.postId,
       isDone: toggleTodo,
     });
-
     return setDetailTodo(false);
   };
 
@@ -204,10 +207,9 @@ const TodoDetail = ({ setDetailTodo, selectedTodoId }) => {
         />
 
         <TodoDetailTitle
+          ref={todoDeatailTitle}
           value={updateTitle}
-          onChange={(e) => {
-            setUpdateTitle(e.target.value);
-          }}
+          onChange={(e) => setUpdateTitle(e.target.value)}
         >
           {selectedTodoId.title}{" "}
         </TodoDetailTitle>

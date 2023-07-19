@@ -57,10 +57,10 @@ const completeUndoTodo = async ({ id, isDone }) => {
 };
 
 export {
+  api,
   getTodo,
   getComTodo,
   addTodo,
-  api,
   deleteTodo,
   editTodo,
   toggleTodo,
