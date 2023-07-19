@@ -66,7 +66,7 @@ const SignupPage = () => {
           placeholder="Enter Passwords"
         />
         <ButtonContainer>
-          <SigninBtn onClick={noWordCheck}>Signin</SigninBtn>
+          <SigninBtn onClick={noWordCheck}>Sign-In</SigninBtn>
         </ButtonContainer>
         <XCircleIcon onClick={onHomeHandler} size="30px" />
       </SignupPageContainer>
