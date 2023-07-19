@@ -1,5 +1,6 @@
 
-# [React LV3 Assignment](https://daily-frontend-kohl.vercel.app/) 
+# [Daily](https://daily-frontend-kohl.vercel.app/) 
+#### project Daily : A service provides the saving user's To-dos through out daily routine.
 ##### by gunhoray & SAHA-YJB using Javascript, React, Html, css
 
 ### by SAHA-YJB
