@@ -41,8 +41,10 @@ const NotcompleteTodo = styled.button`
   padding: 10px;
   justify-content: center;
   border-radius: 6px;
-  border: 1px solid;
+  border: 1px solid #000;
   background-color: #fff;
+  box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.3);
+  outline: none;
 `;
 const CompleteTodolistContainer = styled.div`
   display: flex;
@@ -66,13 +68,20 @@ const CompletedTodo = styled.div`
   padding: 10px;
   justify-content: center;
   border-radius: 6px;
-  border: 1px solid;
+  border: 1px solid #fff;
   color: #fff;
   background-color: black;
+  box-shadow: 5px 2px 10px rgba(0, 0, 0, 0.3);
+  outline: none;
 `;
 const TodoTitle = styled.div`
   font-size: 20px;
-  display: flex;
+  display: block;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  text-align: left;
 `;
 const TodoDeadline = styled.div`
   font-size: 15px;
