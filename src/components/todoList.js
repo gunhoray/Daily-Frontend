@@ -79,15 +79,16 @@ const TodoDeadline = styled.div`
   display: flex;
 `;
 const TodoList = () => {
-  const [detailTodo, setDetailTodo] = useState(false);
-  const [selectedTodoId, setSelectedTodoId] = useState("");
-
+  const [detailTodo, setDetailTodo] = useState(false); //모달 여닫기
+  const [selectedTodoId, setSelectedTodoId] = useState(""); //데이터 props 해 줄 스테이트
+  //incom투두 데이터
   const {
     isLoading: isTodoLoading,
     isError: isTodoError,
     data: todo,
   } = useQuery("todo", getTodo);
 
+  //com투두 데이터
   const {
     isLoading: isComTodoLoading,
     isError: isComTodoError,
@@ -105,6 +106,7 @@ const TodoList = () => {
     <ShowtodolistSection id="showTodoList">
       <NotcompleteTodolistContainer>
         {todo.todo
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .filter((todopost) => todopost.isDone === false)
           .map(function (todopost) {
             return (
@@ -137,6 +139,7 @@ const TodoList = () => {
 
       <CompleteTodolistContainer>
         {comTodo.todo
+          .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
           .filter((todopost) => todopost.isDone === true)
           .map(function (todopost) {
             return (
