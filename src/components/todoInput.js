@@ -8,14 +8,15 @@ const PlanyourdaySection = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh;
+  height: 70vh;
   background: #000;
+  overflow: hidden;
 `;
 const PlanyourdayContainer = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 24px;
+  gap: 15px;
   margin-top: 60px;
   h1 {
     margin-top: -30px;
@@ -30,8 +31,6 @@ const PlanyourdayContainer = styled.div`
 `;
 const PlanyourdayTitleInput = styled.input`
   height: 20px;
-  overflow: hidden;
-  color: rgba(0, 0, 0, 0.5);
   text-overflow: ellipsis;
   font-family: Roboto;
   font-size: 14px;
@@ -40,10 +39,9 @@ const PlanyourdayTitleInput = styled.input`
   line-height: 20px;
   width: 400px;
 `;
-const PlanyourdayContentInput = styled.input`
-  height: 20px;
-  overflow: hidden;
-  color: rgba(0, 0, 0, 0.5);
+const PlanyourdayContentInput = styled.textarea`
+  overflow: visible;
+  height: 12vh;
   text-overflow: ellipsis;
   font-family: Roboto;
   font-size: 14px;
@@ -51,6 +49,7 @@ const PlanyourdayContentInput = styled.input`
   font-weight: 400;
   line-height: 20px;
   width: 400px;
+  resize: none;
 `;
 const ClearBtn = styled.button`
   width: 160px;

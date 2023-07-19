@@ -25,12 +25,15 @@ export const FooterAboutUs = styled.div`
   color: black;
   font-size: 18px;
   font-family: Roboto;
+  font-size: 12px;
   font-weight: 700;
   word-wrap: break-word;
   margin-right: 20px;
   cursor: pointer;
   &:hover {
-    color: orange;
+    box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3);
+    padding: auto;
+    border-radius: 10px;
   }
 `;
 export const FooterCopyRight = styled.div`
@@ -38,8 +41,7 @@ export const FooterCopyRight = styled.div`
   align-self: stretch;
   text-align: center;
   color: black;
-  font-size: 18px;
+  font-size: 12px;
   font-family: Roboto;
-  font-weight: 700;
   word-wrap: break-word;
 `;
