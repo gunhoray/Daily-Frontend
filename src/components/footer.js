@@ -4,9 +4,8 @@ import {
   FooterContainer,
   FooterAboutUs,
   FooterCopyRight,
-} from "./styled/footerEl";
-import AboutModal from "./AboutModal";
-
+} from "./footer.style";
+import AboutModal from "./aboutModal";
 const Footer = () => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const openModal = () => {
@@ -20,7 +19,7 @@ const Footer = () => {
       <FooterContainer>
         <FooterAboutUs onClick={openModal}>About Us</FooterAboutUs>
         {isOpenModal && <AboutModal closeModal={closeModal} />}
-        <FooterCopyRight>CopyRight</FooterCopyRight>
+        <FooterCopyRight>Copy Right</FooterCopyRight>
       </FooterContainer>
     </FooterSection>
   );
