@@ -1,5 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import { deleteTodo, editTodo, toggleTodo, completeUndoTodo } from "../api/api";
+import { useQueryClient, useMutation } from "react-query";
 
 const TodoDetailSection = styled.div`
   position: fixed;
@@ -26,20 +28,22 @@ const ExitButton = styled.button`
   margin-left: 95%;
   margin-bottom: 10px;
 `;
-const TodoDetailTitle = styled.input`
+const TodoDetailTitle = styled.textarea`
   font-size: 18px;
   font-weight: bold;
   border: none;
   width: 100%;
   margin-bottom: 10px;
+  overflow: visible;
 `;
-const TodoDetailContent = styled.input`
+const TodoDetailContent = styled.textarea`
   font-size: 14px;
   border: none;
   width: 100%;
   height: 100px;
   resize: none;
   margin-bottom: 20px;
+  overflow: visible;
 `;
 const ButtonContainer = styled.div`
   display: flex;
@@ -79,7 +83,96 @@ const UpdateButton = styled.button`
   }
 `;
 const TodoDetail = ({ setDetailTodo, selectedTodoId }) => {
-  console.log(selectedTodoId);
+  const [updateTitle, setUpdateTitle] = useState(selectedTodoId.title);
+  const [updateContent, setUpdateContent] = useState(selectedTodoId.content);
+
+  const queryClient = useQueryClient();
+
+  const deleteTodoMutation = useMutation(deleteTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+    },
+  });
+  const completeDeleteTodoMutation = useMutation(deleteTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("comTodo");
+    },
+  });
+
+  const editTodoMutation = useMutation(editTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+    },
+  });
+  const comEditTodoMutation = useMutation(editTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("comTodo");
+    },
+  });
+
+  const toggleTodoMutation = useMutation(toggleTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("comTodo");
+    },
+  });
+
+  const undoToggleTodoMutation = useMutation(completeUndoTodo, {
+    onSuccess: () => {
+      queryClient.invalidateQueries("todo");
+    },
+  });
+
+  const deleteHandler = (id) => {
+    deleteTodoMutation.mutate(id);
+    return setDetailTodo(false);
+  };
+  const completeDeleteHandler = (id) => {
+    completeDeleteTodoMutation.mutate(id);
+    return setDetailTodo(false);
+  };
+
+  const editHandler = () => {
+    // console.log("sending", id, title, content);
+
+    editTodoMutation.mutate({
+      id: selectedTodoId.postId,
+      title: updateTitle,
+      content: updateContent,
+    });
+    return setDetailTodo(false);
+  };
+  const comEditHandler = () => {
+    // console.log("sending", id, title, content);
+
+    comEditTodoMutation.mutate({
+      id: selectedTodoId.postId,
+      title: updateTitle,
+      content: updateContent,
+    });
+    return setDetailTodo(false);
+  };
+
+  const toggleHandler = () => {
+    const toggleTodo = (selectedTodoId.isDone = true);
+
+    toggleTodoMutation.mutate({
+      id: selectedTodoId.postId,
+      isDone: toggleTodo,
+    });
+    return setDetailTodo(false);
+  };
+
+  const undoToggleHandler = () => {
+    const toggleTodo = (selectedTodoId.isDone = false);
+
+    undoToggleTodoMutation.mutate({
+      id: selectedTodoId.postId,
+      isDone: toggleTodo,
+    });
+
+    return setDetailTodo(false);
+  };
+
   return (
     <TodoDetailSection>
       <TodoDetailContainer>
@@ -91,13 +184,68 @@ const TodoDetail = ({ setDetailTodo, selectedTodoId }) => {
           X
         </ExitButton>
 
-        <TodoDetailTitle placeholder={selectedTodoId.title} />
-        <TodoDetailContent placeholder={selectedTodoId.content} />
+        <TodoDetailTitle
+          value={updateTitle}
+          onChange={(e) => {
+            setUpdateTitle(e.target.value);
+          }}
+        >
+          {selectedTodoId.title}{" "}
+        </TodoDetailTitle>
+        <TodoDetailContent
+          value={updateContent}
+          onChange={(e) => setUpdateContent(e.target.value)}
+        >
+          {" "}
+          {selectedTodoId.content}
+        </TodoDetailContent>
 
         <ButtonContainer>
-          <DeleteButton>Delete</DeleteButton>
-          <UpdateButton>Update</UpdateButton>
-          <CompletedButton>Completed</CompletedButton>
+          {selectedTodoId.isDone === false ? (
+            <DeleteButton onClick={() => deleteHandler(selectedTodoId.postId)}>
+              Delete
+            </DeleteButton>
+          ) : (
+            <DeleteButton
+              onClick={() => completeDeleteHandler(selectedTodoId.postId)}
+            >
+              Delete
+            </DeleteButton>
+          )}
+          {selectedTodoId.isDone === false ? (
+            <UpdateButton
+              onClick={() =>
+                editHandler(selectedTodoId.postId, updateTitle, updateContent)
+              }
+            >
+              Update
+            </UpdateButton>
+          ) : (
+            <UpdateButton
+              onClick={() =>
+                comEditHandler(
+                  selectedTodoId.postId,
+                  updateTitle,
+                  updateContent
+                )
+              }
+            >
+              Update
+            </UpdateButton>
+          )}
+          {selectedTodoId.isDone === false ? (
+            <CompletedButton
+              onClick={() => toggleHandler(selectedTodoId.postId)}
+            >
+              Completed
+            </CompletedButton>
+          ) : (
+            <CompletedButton
+              onClick={() => undoToggleHandler(selectedTodoId.postId)}
+            >
+              Cancel
+            </CompletedButton>
+          )}
         </ButtonContainer>
       </TodoDetailContainer>
     </TodoDetailSection>

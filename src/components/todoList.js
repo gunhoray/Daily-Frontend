@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { useState } from "react";
 import TodoDetail from "./todoDetail";
 import { useQuery } from "react-query";
-import { getTodo } from "../api/api";
+import { getTodo, getComTodo } from "../api/api";
 
 const ShowtodolistSection = styled.div`
   display: flex;
@@ -82,19 +82,29 @@ const TodoList = () => {
   const [detailTodo, setDetailTodo] = useState(false);
   const [selectedTodoId, setSelectedTodoId] = useState("");
 
-  const { isLoading, isError, data } = useQuery("todo", getTodo);
+  const {
+    isLoading: isTodoLoading,
+    isError: isTodoError,
+    data: todo,
+  } = useQuery("todo", getTodo);
 
-  if (isLoading) {
+  const {
+    isLoading: isComTodoLoading,
+    isError: isComTodoError,
+    data: comTodo,
+  } = useQuery("comTodo", getComTodo);
+
+  if (isTodoLoading || isComTodoLoading) {
     return <p>로딩중입니다....!</p>;
   }
-  if (isError) {
+  if (isTodoError || isComTodoError) {
     return <p>오류가 발생하였습니다...!</p>;
   }
-  console.log("data", data.todo);
+
   return (
     <ShowtodolistSection id="showTodoList">
       <NotcompleteTodolistContainer>
-        {data.todo
+        {todo.todo
           .filter((todopost) => todopost.isDone === false)
           .map(function (todopost) {
             return (
@@ -120,26 +130,33 @@ const TodoList = () => {
           <TodoDetail
             selectedTodoId={selectedTodoId}
             setDetailTodo={setDetailTodo}
+            setSelectedTodoId={setSelectedTodoId}
           />
         )}
       </NotcompleteTodolistContainer>
 
       <CompleteTodolistContainer>
-        <CompletedTodo>
-          <div>Drive through the Night</div>
-          <br />
-          <div> 2023.07.99 </div>
-        </CompletedTodo>
-        <CompletedTodo>
-          <div>Pass to Homie</div>
-          <br />
-          <div> 2023.08.99 </div>
-        </CompletedTodo>
-        <CompletedTodo>
-          <div>Trust your Homies</div>
-          <br />
-          <div> 2023.17.99 </div>
-        </CompletedTodo>
+        {comTodo.todo
+          .filter((todopost) => todopost.isDone === true)
+          .map(function (todopost) {
+            return (
+              <CompletedTodo
+                key={todopost.postId}
+                onClick={() => {
+                  setDetailTodo(true);
+                  setSelectedTodoId(todopost);
+                }}
+              >
+                <TodoTitle> {todopost.title}</TodoTitle>
+                <br />
+                <TodoDeadline>
+                  {new Date(todopost.createdAt).toLocaleString("ko-KR", {
+                    timeZone: "Asia/Seoul",
+                  })}
+                </TodoDeadline>
+              </CompletedTodo>
+            );
+          })}
       </CompleteTodolistContainer>
     </ShowtodolistSection>
   );
