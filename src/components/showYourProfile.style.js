@@ -3,17 +3,16 @@ import { styled } from "styled-components";
 export const ShowYourProfileContainer = styled.div`
   background-color: #000;
   display: flex;
-  padding: 30px 170px;
+  padding: 20px;
   justify-content: center;
-  align-items: center;
-  gap: 40px;
+  /* align-items: center; */
+  /* gap: 40px;
   align-self: stretch;
-  box-sizing: border-box;
+  box-sizing: border-box; */
 `;
 export const ShowYourProfileDataBox = styled.div`
   display: flex;
   flex-direction: column;
-  gap: 30px;
 `;
 export const ShowYourProfileName = styled.div`
   align-self: stretch;
@@ -28,11 +27,11 @@ export const ShowYourProfileName = styled.div`
 export const ShowYourProfileEmail = styled.div`
   align-self: stretch;
   text-align: center;
-  color: #000;
+  color: #fff;
   font-family: Roboto;
-  font-size: 22px;
+  font-size: 12px;
   font-style: normal;
   font-weight: 400;
   line-height: 24px;
-  text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+  /* text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff; */
 `;

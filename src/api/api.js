@@ -5,6 +5,15 @@ const api = axios.create({
   // baseURL: "http://localhost:3001",
 });
 
+const quoteapi = axios.create({
+  baseURL: "https://api.api-ninjas.com/v1/quotes?category=intelligence",
+  headers: { "X-Api-Key": "gmZxady+6/Z4J/9StXKYzw==GM3yOnDppVvNXVnm" },
+});
+const getquote = async () => {
+  const res = await quoteapi.get();
+  return res.data;
+};
+
 const getTodo = async () => {
   const res = await api.get("/incom");
   // const res = await api.get("/todos");
@@ -56,4 +65,5 @@ export {
   editTodo,
   toggleTodo,
   completeUndoTodo,
+  getquote,
 };

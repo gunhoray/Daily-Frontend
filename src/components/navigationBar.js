@@ -36,10 +36,12 @@ const Showtodolist = styled(Linkscroll)`
 `
 const Logout = styled(Link)`
   font-family: Roboto;
+  text-decoration-line: none;
+  color: black;
   font-size: 15px;
   cursor: pointer;
   margin-right: 10px;
-`
+`;
 
 const NavigationBar = () => {
   return (
