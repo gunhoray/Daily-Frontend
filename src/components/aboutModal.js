@@ -13,7 +13,16 @@ import {
 import nodeImg from "../img/node.png";
 import reactImg from "../img/react.png";
 
+/**
+ * Footer안에 있는 About Us를 통해 팀 구성원을 보여주는 modal 컴포넌트를 구현하는 함수
+ * @param {boolean} closeModal modal을 열고 닫기 위한 state
+ * @returns About Us modal component
+ */
 const AboutModal = ({ closeModal }) => {
+  /**
+   * 팀원들의 정보를 담고 있는 state
+   * @param {array} madeProfile 각 팀원들의 정보가 담긴 객체를 담은 배열
+   */
   const [madeProfile, setMadeProfile] = useState([
     {
       id: 1,

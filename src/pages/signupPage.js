@@ -10,31 +10,58 @@ import {
 } from "./signupPage.styled";
 import { useNavigate } from "react-router-dom";
 
+/**
+ * Sign-Up page를 구현하는 함수  
+ * @returns Sign-Up page
+ */ 
 const SignupPage = () => {
+  /**
+   * 유저가 입력하는 email, password를 가지고 있는 state
+   * @param {string} email SignupPageEmailInput으로 들어오는 값
+   * @param {string} password SignupPagePasswordInput 들어오는 값
+   */
   const [state, setState] = useState({
     email: "",
     password: "",
   });
+  /**
+   * SignupPage가 열렸을 때, SignupPageEmailInput을 useRef로 메모리 저장해둔다
+   */
   const emailRef = useRef();
+  /**
+   * SignupPage가 열렸을 때, SignupPagePasswordInput을 useRef로 메모리 저장해둔다
+   */
   const passwordRef = useRef();
+  /**
+   * useNavigate hook을  navigate으로 정의한다.
+   */
   const navigate = useNavigate();
-
-  //마운트시 이메일 포커스
+  /**
+   * SignupPage가 열렸을 때, SignupPageEmailInput에 포커스 한다.
+   */
   useEffect(() => {
     emailRef.current.focus();
   }, []);
-  //home이동
+  /**
+   * SignupPage에서 XCircleIcon를 통해 navigate으로 mainPage로 넘어간다.
+   */
   const onHomeHandler = () => {
     navigate("/");
   };
-  //email,password값 저장
+  /**
+   * SignupPageEmailInput, SignupPagePasswordInput에서 입력되는 값을 읽어 setState에 반영해주는 함수
+   * @param {object} setState  event에서 name과 value를 가져와 반영한다.
+   */
   const onInputChangeHandler = (e) => {
     setState({
       ...state,
       [e.target.name]: e.target.value,
     });
   };
-  //비밀번호 이메일 값이 없을시 포커스
+  /**
+   * SignupPageEmailInput, SignupPagePasswordInput 중에 빈값이 있다면 자동으로 포커스를 맞추어 주는 함수
+   * @param {function} if state의 email 혹은 password가 1보다 작으면, 0 이면 focus를 맞추어 준다
+   */
   const noWordCheck = () => {
     if (state.email < 1) {
       emailRef.current.focus();

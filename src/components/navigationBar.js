@@ -7,6 +7,10 @@ import {
   Logout,
 } from "./navigationBar.style";
 
+/**
+ * mainPage안의 navigation bar 컴포넌트를 구현하는 함수 
+ * @returns NavigationBar component in mainPage 
+ */
 const NavigationBar = () => {
   return (
    <NavigationbarSection>

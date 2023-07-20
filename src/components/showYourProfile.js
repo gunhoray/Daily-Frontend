@@ -6,6 +6,10 @@ import {
   ShowYourProfileEmail,
 } from "./showYourProfile.style";
 
+/**
+ * mainPage안의 ShowYourProfile page를 구성하는 함수
+ * @returns ShowYourProfile Section in mainPage
+ */
 const ShowYourProfile = () => {
   return (
     <ShowYourProfileContainer>

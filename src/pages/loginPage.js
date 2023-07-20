@@ -1,103 +1,45 @@
 import React from "react";
-import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { getquote } from "../api/api";
 import { useQuery } from "react-query";
-
-const HomepageSection = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  background: #000;
-`;
-
-const HomepageContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 24px;
-  h1 {
-    margin-top: -30px;
-    color: white;
-    font-family: Roboto;
-  }
-`;
-
-const Quote = styled.div`
-  font-size: 16px;
-  font-family: Roboto;
-  color: white;
-  margin: -30px 80px 0px 80px;
-  text-align: center;
-`;
-
-const HomepageEmailInput = styled.input`
-  height: 20px;
-  overflow: hidden;
-  color: rgba(0, 0, 0, 0.5);
-  text-overflow: ellipsis;
-  font-family: Roboto;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-  width: 400px;
-`;
-
-const HomepagePasswordInput = styled.input`
-  height: 20px;
-  overflow: hidden;
-  color: rgba(0, 0, 0, 0.5);
-  text-overflow: ellipsis;
-  font-family: Roboto;
-  font-size: 14px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: 20px;
-  width: 400px;
-`;
-
-const SignupBtn = styled.button`
-  width: 160px;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #fff;
-  background-color: black;
-  color: #fff;
-  &:hover {
-    background-color: white;
-    color: black;
-  }
-`;
-
-const LoginBtn = styled.button`
-  width: 160px;
-  padding: 12px;
-  border-radius: 8px;
-  border: 1px solid #fff;
-  &:hover {
-    background-color: black;
-    color: white;
-  }
-`;
-
-const ButtonContainer = styled.div`
-  display: flex;
-  gap: 12px;
-`;
-
+import {
+  HomepageSection,
+  HomepageContainer,
+  Quote,
+  HomepageEmailInput,
+  HomepagePasswordInput,
+  SignupBtn,
+  LoginBtn,
+  ButtonContainer,
+} from "./loginPage.style";
+/**
+ * LoginPage를 구현하는 함수 입니다.
+ * @returns Log-In page
+ */
 const LoginPage = () => {
+  /**
+   * useNavigate hook을 navigate으로 정의
+   */
   const navigate = useNavigate();
+  /**
+   * LoginBtn의 onClick action으로 "/main":mainPage로 navigate하는 함수
+   */
   const onLoginHandler = () => {
     navigate("/main");
   };
+  /**
+   * SignupBtn의 onClick action으로 "/signup":signupPage로 navigate하는 함수
+   */
   const onSignupHandler = () => {
     navigate("/signup");
   };
-
+  /**
+   * 로그인 화면의 부제목인 명언을 가져오기 위한 query의 과정에 대한 state들을 가지고 있는 객체
+   * @param {boolean} isLoading query를 통해 data를 가져오기 전까지 loading 상태를 처리하는 boolean
+   * @param {boolean} isError query를 통해 data를 가져오기에 실패한 error 상태를 처리하는 boolean
+   * @param {array} data query를 통한 성공적인 response, 필요한 quote 생성
+   */
   const { isLoading, isError, data } = useQuery("quote", getquote);
-
   if (isLoading) {
     return <p>로딩중입니다....!</p>;
   }
